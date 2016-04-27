@@ -1,7 +1,5 @@
 package org.apache.mycat.advisor.persistence.dao;
 
-import java.util.List;
-
 import org.apache.mycat.advisor.persistence.model.TabUserInfo;
 import org.apache.mycat.advisor.persistence.util.MyMapper;
 
@@ -15,4 +13,10 @@ public interface TabUserInfoMapper extends MyMapper<TabUserInfo> {
     Map<String,Object> getCompanyAndPostByUserId(long id);
 
     List<Map<String,Object>> findListMapByUserName(String username);
+
+    /**
+     * 用户名查询用户，用户名，邮箱
+     * @return 用户实体
+     */
+    TabUserInfo selectUserByAccount(String userName);
 }

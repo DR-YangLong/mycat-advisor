@@ -13,7 +13,7 @@ import java.util.Map;
  * functional describe:
  *
  * @author DR.YangLong [410357434@163.com]
- * @version 1.0    2016/4/26 13:53
+ * @version 1.0    2016/4/26 19:53
  */
 public interface RealmServiceWrapper extends RealmService,BaseService<TabUserInfo>{
 

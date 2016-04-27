@@ -52,4 +52,11 @@
 			      <if test="username!=null and username!=''">username like CONCAT('%',#{username},'%') </if>
 			  </where>
         </select>
+
+    <select id="selectUserByAccount" resultType="org.apache.mycat.advisor.persistence.model.TabUserInfo">
+        SELECT
+        t.*
+        FROM tab_user_info t
+        WHERE t.username=#{userName} OR t.email_address=#{userName}
+    </select>
 </mapper>
