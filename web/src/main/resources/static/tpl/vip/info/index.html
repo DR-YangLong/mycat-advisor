@@ -56,10 +56,10 @@
 						{{$value.beginTime | dateFormat}}
 					</td>
 					<td title="{{$value.endTime | dateFormat}}">{{$value.endTime | dateFormat}}</td>
-					<td title="{{$value.score==1 }}">{{$value.score==1 }}</td>
+					<td title="{{$value.score }}">{{$value.score }}</td>
 					<td>
 						<button type="button" class="btn btn-xs btn-default btn-icon btn-modal waves-effect waves-circle waves-float waves-effect waves-circle waves-float"
-								 data-href="vip/info/get/{{$value.id}}?tpl=vip/info/save">
+								 data-href="vip/info/get/{{$value.id}}?tpl=vip/info/save&userName={{$value.username}}">
 							<span class="zmdi zmdi-edit"></span> </button>
 						<!--<button type="button" class="btn btn-xs btn-default btn-icon btn-modal waves-effect waves-circle waves-float waves-effect waves-circle waves-float"
 								 data-href="sm/role/menu/{{$value.id}}?tpl=sm/role/tree">

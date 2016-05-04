@@ -110,8 +110,8 @@
 	"plus": {
 		"hardwareAccelerated": true,
 		"splashscreen": {
-			"autoclose": false,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
-			"waiting": true,
+			"autoclose": true,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
+			"waiting": false,
 			"delay": "0"
 		},
 		"runmode": "liberate",/*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
@@ -725,7 +725,18 @@
 			},
 			"pages/user-comment.html": {
 				"resources": [
-					"pages/user-comment.js"
+					"pages/user-comment.js",
+					"mui/js/mui.min.js",
+					"pages/user_score.js",
+					"styles/images/star_icon.gif",
+					"libs/jquery.js",
+					"mui/css/mui.min.css",
+					"mui/fonts/mui.ttf",
+					"styles/images/star.png",
+					"font-awesome/css/font-awesome.min.css",
+					"styles/user-comment.css",
+					"styles/default.css",
+					"pages/user-score.js"
 				],
 				"refer": [],
 				"priority": 0

@@ -74,16 +74,18 @@ define(function(require, exports, module) {
 
 	self.languageStr = self.languageRanges[0].text+";"
 	self.languageRange = self.languageRanges[0].value+";";
-
+	self.language = [];
 	self.pickLanguage = function(index) {
 		var tmp =self.languageRanges[index].value+";";
 		var tmpStr =self.languageRanges[index].text+",";
 		if (self.languageRange.indexOf(tmp)!=-1){
 			self.languageRange = self.languageRange.replace(tmp, "");
-			self.languageStr = self.languageStr.replace(tmpStr, "");		
+			self.languageStr = self.languageStr.replace(tmpStr, "");
+			self.language.push(self.languageRanges[index]);
 		}else{
 			self.languageRange = self.languageRange+tmp;
 			self.languageStr = self.languageStr+tmpStr;
+			self.language.splice(self.language.indexOf(self.languageRanges[index]),1);
 		}
 	};
 

@@ -1,4 +1,4 @@
-package org.apache.mycat.advisor.web.controller.app.order;
+package org.apache.mycat.advisor.web.controller.app.pay;
 
 import org.apache.mycat.advisor.common.controller.BaseController;
 import org.apache.mycat.advisor.common.controller.ResultMap;
@@ -14,8 +14,8 @@ import java.util.Map;
  * Created by cjl on 2016/4/20.
  */
 @RestController
-@RequestMapping("/app/order")
-public class OrderController extends BaseController{
+@RequestMapping("/app/pay")
+public class ApiPayController extends BaseController{
 
 
 	ApiOrderService apiOrderService;
@@ -26,13 +26,30 @@ public class OrderController extends BaseController{
 		return success();
 	}
 
+	/**
+	 * 下单
+	 * @param order
+	 * @param param
+	 * @return
+	 */
 	@RequestMapping("subscribe")
-	public ResultMap subscribe(TabOrder order, @RequestParam Map<String, Object> param) {
+	public ResultMap subscribe(TabOrder order, @RequestParam Map<String, String> param) {
 
-		boolean flag = apiOrderService.newOrder(order);
+		/*boolean flag = apiOrderService.newOrder(param,1L);
 		if (flag) {
 			return success();
-		}
+		}*/
 		return failure();
+	}
+
+	/**
+	 * 订单确认
+	 * @param order
+	 * @param param
+	 * @return
+	 */
+	@RequestMapping("affirm")
+	public ResultMap affirm(TabOrder order,@RequestParam Map<String, Object> param) {
+		return success();
 	}
 }

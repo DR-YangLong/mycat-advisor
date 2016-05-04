@@ -44,4 +44,21 @@
 		     where o.id=#{id}
         </select>
 
+    <select id="pageOrderByStatus"  resultType="map">
+        SELECT
+            od.id,
+            od.create_time as createTime,
+            od.order_number as orderNumber,
+            usr.user_alias as orderPeople,
+            od.order_step as orderStep,
+            od.type,
+            pro.`name` as productName,
+            od.`status`
+        FROM
+            tab_order od
+        LEFT JOIN product_info pro ON pro.id = od.product_id
+        LEFT JOIN tab_user_info usr on usr.id = od.order_people
+        WHERE od.`status`=#{status}
+    </select>
+
 </mapper>

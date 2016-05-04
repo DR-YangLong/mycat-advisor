@@ -1,35 +1,62 @@
 package org.apache.mycat.advisor.persistence.model;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 /**
- * Created by cjl on 2016/3/20.
+ * Created by cjl on 2016/4/25.
  */
-@Table(name = "tab_order")
+@Entity
+@Table(name = "tab_order", schema = "", catalog = "advisor")
 public class TabOrder {
     @Id
     @Column(name = "id", nullable = false, insertable = true, updatable = true)
     private Long id;
+    /**
+     * 订单编号
+     */
+    private String orderNumber;
+    /**
+     * 产品id
+     */
+    private Long productId;
+    /**
+     * 订单类型
+     */
     private Long type;
-    @Transient
-    private String typeName;
-    private Long placeId;
-    @Transient
-    private String placeName;
-    private Long problemId;
-    @Transient
-    private String problemName;
-    private Long advisorId;
-    @Transient
-    private String advisorName;
+    /**
+     * 订单状态
+     */
     private Integer status;
+    /**
+     * 支付流水号
+     */
     private String paynumber;
+    /**
+     * 支付渠道
+     */
     private Integer paytype;
+    /**
+     * 订单流程
+     */
     private Integer orderStep;
+    /**
+     * 订单金额
+     */
+    private Float earnings; //订单金额
+    /**
+     * 下单人
+     */
+    private Long orderPeople;
+    /**
+     * 处理人
+     */
+    private Long processPeople;
+
+    private long createTime;
+    private long updateTime;
 
 
     public Long getId() {
@@ -40,87 +67,25 @@ public class TabOrder {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "type", nullable = false, insertable = true, updatable = true)
-    public Long getType() {
-        return type;
+    @Column(name = "earnings", nullable = false, insertable = true, updatable = true)
+    public Float getEarnings() {
+        return earnings;
     }
 
-    public void setType(Long type) {
-        this.type = type;
-    }
-    
-    @Basic
-    @Column(name="typename",nullable=true,insertable=false,updatable=false)
-    public String getTypeName() {
-		return typeName;
-	}
-    
-    public void setTypeName(String typeName) {
-		this.typeName = typeName;
-	}
-
-    @Basic
-    @Column(name = "place_id", nullable = true, insertable = true, updatable = true)
-    public Long getPlaceId() {
-        return placeId;
+    public void setEarnings(Float earnings) {
+        this.earnings = earnings;
     }
 
-    public void setPlaceId(Long placeId) {
-        this.placeId = placeId;
-    }
-    
-    @Basic
-    @Column(name="placename",nullable=true,insertable=false,updatable=false)
-    public String getPlaceName() {
-		return placeName;
-	}
-    
-    public void setPlaceName(String placeName) {
-		this.placeName = placeName;
-	}
-
-    @Basic
-    @Column(name = "problem_id", nullable = true, insertable = true, updatable = true)
-    public Long getProblemId() {
-        return problemId;
+    @Column(name = "product_id", nullable = false, insertable = true, updatable = true)
+    public Long getProductId() {
+        return productId;
     }
 
-    public void setProblemId(Long problemId) {
-        this.problemId = problemId;
-    }
-    
-    @Basic
-    @Column(name="problemname",nullable=true,insertable=false,updatable=false)
-    public String getProblemName() {
-		return problemName;
-	}
-    
-    public void setProblemName(String problemName) {
-		this.problemName = problemName;
-	}
-
-    @Basic
-    @Column(name = "advisor_id", nullable = true, insertable = true, updatable = true)
-    public Long getAdvisorId() {
-        return advisorId;
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
-    public void setAdvisorId(Long advisorId) {
-        this.advisorId = advisorId;
-    }
-    
-    @Basic
-    @Column(name="advisorname",nullable=true,insertable=false,updatable=false)
-    public String getAdvisorName() {
-		return advisorName;
-	}
-    
-    public void setAdvisorName(String advisorName) {
-		this.advisorName = advisorName;
-	}
 
-    @Basic
     @Column(name = "status", nullable = true, insertable = true, updatable = true)
     public Integer getStatus() {
         return status;
@@ -130,7 +95,7 @@ public class TabOrder {
         this.status = status;
     }
 
-    @Basic
+
     @Column(name = "paynumber", nullable = true, insertable = true, updatable = true, length = 32)
     public String getPaynumber() {
         return paynumber;
@@ -140,7 +105,7 @@ public class TabOrder {
         this.paynumber = paynumber;
     }
 
-    @Basic
+
     @Column(name = "paytype", nullable = true, insertable = true, updatable = true)
     public Integer getPaytype() {
         return paytype;
@@ -150,7 +115,7 @@ public class TabOrder {
         this.paytype = paytype;
     }
 
-    @Basic
+
     @Column(name = "order_step", nullable = true, insertable = true, updatable = true)
     public Integer getOrderStep() {
         return orderStep;
@@ -158,6 +123,57 @@ public class TabOrder {
 
     public void setOrderStep(Integer orderStep) {
         this.orderStep = orderStep;
+    }
+
+    @Column(name = "create_time", nullable = true, insertable = true, updatable = true)
+    public long getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(long createTime) {
+        this.createTime = createTime;
+    }
+    @Column(name = "update_time", nullable = true, insertable = true, updatable = true)
+    public long getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(long updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    @Column(name = "order_people", nullable = true, insertable = true, updatable = true)
+    public Long getOrderPeople() {
+        return orderPeople;
+    }
+
+    public void setOrderPeople(Long orderPeople) {
+        this.orderPeople = orderPeople;
+    }
+    @Column(name = "process_people", nullable = true, insertable = true, updatable = true)
+    public Long getProcessPeople() {
+        return processPeople;
+    }
+
+    public void setProcessPeople(Long processPeople) {
+        this.processPeople = processPeople;
+    }
+
+    @Column(name = "order_number", nullable = true, insertable = true, updatable = true)
+    public String getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+    @Column(name = "type", nullable = true, insertable = true, updatable = true)
+    public Long getType() {
+        return type;
+    }
+
+    public void setType(Long type) {
+        this.type = type;
     }
 
     @Override
@@ -168,10 +184,7 @@ public class TabOrder {
         TabOrder tabOrder = (TabOrder) o;
 
         if (id != null ? !id.equals(tabOrder.id) : tabOrder.id != null) return false;
-        if (type != null ? !type.equals(tabOrder.type) : tabOrder.type != null) return false;
-        if (placeId != null ? !placeId.equals(tabOrder.placeId) : tabOrder.placeId != null) return false;
-        if (problemId != null ? !problemId.equals(tabOrder.problemId) : tabOrder.problemId != null) return false;
-        if (advisorId != null ? !advisorId.equals(tabOrder.advisorId) : tabOrder.advisorId != null) return false;
+        if (productId != null ? !productId.equals(tabOrder.productId) : tabOrder.productId != null) return false;
         if (status != null ? !status.equals(tabOrder.status) : tabOrder.status != null) return false;
         if (paynumber != null ? !paynumber.equals(tabOrder.paynumber) : tabOrder.paynumber != null) return false;
         if (paytype != null ? !paytype.equals(tabOrder.paytype) : tabOrder.paytype != null) return false;
@@ -183,10 +196,7 @@ public class TabOrder {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (type != null ? type.hashCode() : 0);
-        result = 31 * result + (placeId != null ? placeId.hashCode() : 0);
-        result = 31 * result + (problemId != null ? problemId.hashCode() : 0);
-        result = 31 * result + (advisorId != null ? advisorId.hashCode() : 0);
+        result = 31 * result + (productId != null ? productId.hashCode() : 0);
         result = 31 * result + (status != null ? status.hashCode() : 0);
         result = 31 * result + (paynumber != null ? paynumber.hashCode() : 0);
         result = 31 * result + (paytype != null ? paytype.hashCode() : 0);

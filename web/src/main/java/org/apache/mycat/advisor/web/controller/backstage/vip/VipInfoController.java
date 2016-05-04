@@ -45,9 +45,12 @@ public class VipInfoController extends BaseController {
     }
 
     @RequestMapping("get/{id}")
-    public ResultMap info(@PathVariable long id) {
+    public ResultMap info(@PathVariable long id,@RequestParam Map<String,Object> param) {
         TabVip vip = vipInfoService.get(id);
-        return success(vip);
+        Map<String, Object> data = object2map(vip);
+        data.putAll(param);
+
+        return success(data);
     }
 
     @RequestMapping("del/{id}")

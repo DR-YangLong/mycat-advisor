@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>订单信息</title>
+		<link href="../../mui/css/mui.min.css" rel="stylesheet" />
+		<link href="../../styles/default.css" rel="stylesheet" />
+		<link href="../../font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+		<style>
+			i.mui-media-object {
+				color: #ccc;
+				font-size: 18px;
+			}
+			.hotel-right {
+				position: absolute;
+				right: 0px;
+			}
+			.hotel-right-padded {
+				position: absolute;
+				right: 20px;
+			}
+			.hotel-right-text {
+				position: absolute;
+				font-size: 14px;
+				height: 16px;
+				line-height: 16px;
+				right: 40px;
+				top: 50%;
+				margin-top: -8px;
+			}
+			.hotel-bar-order-info {
+				position: relative;
+				padding: 10px;
+			}
+			.hotel-tips {
+				margin: 10px;
+				font-size: 10px;
+				background-color: #fff;
+				padding: 8px;
+				border-radius: 3px;
+			}
+			.hotel-order-action {
+				margin: 0px;
+				padding: 0px 10px;
+				position: relative;
+				text-align: center;
+				color: #666;
+				height: 45px;
+				font-size: 0px;
+			}
+			.hotel-order-action li {
+				background-color: #fff;
+				border: solid 1px #c8c7cc;
+				border-left: none;
+				display: inline-block;
+				padding: 10px 7px;
+				margin: 0px;
+				width: 33.3%;
+				font-size: 11px;
+				text-align: center;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+			}
+			.hotel-order-action li:first-child {
+				border-left: solid 1px #c8c7cc;
+			}
+			.hotel-order-action li:active {
+				border: solid 1px #099fde;
+				color: #099fde;
+			}
+			.mui-table-view {
+				margin-bottom: 15px;
+			}
+			.hotel-costomer-btn {
+				margin-bottom: 20px;
+				padding: 10px;
+				font-size: 14px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav hotel-header">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">订单信息</h1>
+		</header>
+		<div class="mui-content">
+			<ul class="mui-table-view">
+				<li class="mui-input-row mui-table-view-cell">
+					<a>
+						总金额
+						<span class="hotel-right-padded hotel-color-orange ">￥320</span>
+					</a>
+				</li>
+				<li class="mui-input-row mui-table-view-cell">
+					<a>
+						订单状态
+						<span class="hotel-right-padded">已确认</span>
+					</a>
+				</li>
+				<li class="mui-input-row mui-table-view-cell">
+					<a>
+						订单编号
+						<span class="hotel-right-padded">1479483143</span>
+					</a>
+				</li>
+				<li class="mui-input-row mui-table-view-cell">
+					<a>
+						预订日期
+						<span class="hotel-right-padded">2015-09-22</span>
+					</a>
+				</li>
+				<li class="mui-input-row mui-table-view-cell">
+					<a>
+						支付方式
+						<span class="hotel-right-padded">到店付款</span>
+					</a>
+				</li>
+				<li class="mui-input-row mui-table-view-cell">
+					<a>
+						订单类型
+						<span class="hotel-right-padded">企业顾问</span>
+					</a>
+				</li>
+			</ul>
+			<ul class="hotel-order-action">
+				<li data-url='./user-comment.html'>点评顾问</li>
+				<li data-url='./confirm-done.html'>确认订单</li>
+				<li data-event='tap>cancelOrder'>取消订单</li>
+			</ul>
+			<p class="hotel-tips">订单处理中，等待审核结果。</p>
+			<ul class="mui-table-view">
+				<li class="mui-input-row mui-table-view-cell">
+					
+						地点
+						<span class="hotel-right-text">北京</span>
+				</li>
+				<li class="mui-input-row mui-table-view-cell">
+					
+						时间
+						<span class="hotel-right-text">从2016-4-10 到2016-5-10</span>
+					
+				</li>
+				<li class="mui-input-row mui-table-view-cell">
+					
+						人数
+						<span class="hotel-right-text">1人</span>
+					
+				</li>
+				<li class="mui-input-row mui-table-view-cell">
+					
+						支付方式
+						<span class="hotel-right-text">1次付清</span>
+					
+				</li>
+				<li class="mui-input-row mui-table-view-cell">
+					
+						价格/星级
+						<span class="hotel-right-text">￥500 / 5星</span>
+					
+				</li>
+				<li class="mui-input-row mui-table-view-cell">
+					
+						技术要求
+						<span class="hotel-right-text">xxxxx  xxxx xxxx</span>
+					
+				</li>
+				<li class="mui-input-row mui-table-view-cell">
+					<a>
+						特殊要求
+						<span class="hotel-right-padded">无</span>
+					</a>
+				</li>
+			</ul>
+			<div class="mui-content-padded">
+				<button class="hotel-costomer-btn mui-btn-block">联系客服</button>
+			</div>
+		</div>
+		<script src="../../mui/js/mui.min.js"></script>
+		<script src="../../libs/ems.js" data-main='./order-detail.js'></script>
+	</body>
+
+</html>

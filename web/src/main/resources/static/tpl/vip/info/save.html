@@ -23,7 +23,7 @@
             <div class="col-sm-5">
                 <div class="fg-line">
                     <input type="text" class="form-control date-time-picker validate[required]" id="beginTime" name="beginTime"
-                           placeholder="开始时间" value="{{beginTime}}">
+                           placeholder="开始时间" value="{{beginTime | dateFormat}}">
                 </div>
                 <small class="help-block">&nbsp;</small>
             </div>
@@ -34,7 +34,7 @@
             <div class="col-sm-5">
                 <div class="fg-line">
                     <input type="text" class="form-control date-time-picker validate[required]" id="endTime" name="endTime"
-                           placeholder="开始时间" value="{{endTime}}">
+                           placeholder="开始时间" value="{{endTime | dateFormat}}">
                 </div>
                 <small class="help-block">&nbsp;</small>
             </div>
@@ -49,6 +49,7 @@
                 </div>
                 <small class="help-block">&nbsp;</small>
             </div>
+
         </div>
     </div>
     <div class="modal-footer">
