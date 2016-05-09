@@ -1,0 +1,53 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{if id == null }}新增{{else}}修改{{/if}}</h4>
+</div>
+<form class="form-horizontal form-validate" id="doorSaveForm" method="post" action="product/type/save">
+    <input name="id" type="hidden" value="{{id}}">
+    {{if id != null }}
+    <input name="insertTime" type="hidden" value="{{insertTime | dateFormat}}">
+    {{/if}}
+
+
+    <!--<input name="status" type="hidden" value="{{status}}">-->
+    <input name="delFlag" type="hidden" value="{{delFlag}}">
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="typeName" class="col-sm-4 control-label">产品类型名称</label>
+
+            <div class="col-sm-5">
+                <div class="fg-line">
+                    <input type="text" class="form-control input-sm validate[required,maxSize[16]]" id="typeName" name="typeName"
+                           placeholder="产品类型名称" value="{{typeName}}">
+                </div>
+                <small class="help-block">&nbsp;</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="typeCode" class="col-sm-4 control-label">产品类型编码</label>
+
+            <div class="col-sm-5">
+                <div class="fg-line">
+                    <input type="text" class="form-control input-sm validate[required,maxSize[16]]" id="typeCode" name="typeCode"
+                           placeholder="产品类型编码" value="{{typeCode}}">
+                </div>
+                <small class="help-block">&nbsp;</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="sort" class="col-sm-4 control-label">次序</label>
+
+            <div class="col-sm-5">
+                <div class="fg-line">
+                    <input type="text" class="form-control input-sm validate[required,maxSize[16]]" id="sort" name="sort"
+                           placeholder="次序" value="{{sort}}">
+                </div>
+                <small class="help-block">&nbsp;</small>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-save">{{lang.btn.save}}</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">{{lang.btn.close}}</button>
+    </div>
+</form>

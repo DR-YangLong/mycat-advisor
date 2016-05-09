@@ -12,4 +12,6 @@ public interface OrderInfoService extends BaseService<TabOrder> {
     Page pageUnapproved(Map<String, Object> param);
 
     Page pageMyApproved(Map<String, Object> param);
+
+    Map<String,Object> orderInfoById(long id);
 }

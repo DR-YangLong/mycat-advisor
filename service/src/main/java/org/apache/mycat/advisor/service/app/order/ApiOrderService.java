@@ -11,5 +11,5 @@ import java.util.Map;
 public interface ApiOrderService {
 
 
-	TabOrder newOrder(Map<String, String> orderMap, Long productId) throws ParseException;
+	TabOrder newOrder(Map<String, String> orderMap) throws ParseException;
 }

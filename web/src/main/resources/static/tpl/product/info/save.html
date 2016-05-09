@@ -1,0 +1,107 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{if id == null }}新增{{else}}修改{{/if}}</h4>
+</div>
+<form class="form-horizontal form-validate" id="doorSaveForm" method="post" action="product/info/save">
+    <input name="id" type="hidden" value="{{id}}">
+    {{if id != null }}
+    <input name="insertTime" type="hidden" value="{{insertTime | dateFormat}}">
+    {{/if}}
+
+
+    <!--<input name="status" type="hidden" value="{{status}}">-->
+    <input name="delFlag" type="hidden" value="{{delFlag}}">
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">产品名称</label>
+
+            <div class="col-sm-5">
+                <div class="fg-line">
+                    <input type="text" class="form-control input-sm validate[required,maxSize[16]]" id="name" name="name"
+                           placeholder="产品名称" value="{{name}}">
+                </div>
+                <small class="help-block">&nbsp;</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="title" class="col-sm-4 control-label">产品标题</label>
+
+            <div class="col-sm-5">
+                <div class="fg-line">
+                    <input type="text" class="form-control input-sm validate[required,maxSize[16]]" id="title" name="title"
+                           placeholder="产品标题" value="{{title}}">
+                </div>
+                <small class="help-block">&nbsp;</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="type" class="col-sm-4 control-label">类型</label>
+
+            <div class="col-sm-5">
+                <div class="fg-line">
+                    <select class="select-picker" id="type" name="type" data-value="{{query.type}}">
+                        <option value="">请选择</option>
+                        {{if types != null}}
+                             {{each types as value}}
+                                 <option value="{{value.id}}" {{if info_type === value.id}} selected=selected {{/if}}>{{value.typeName}}</option>
+                             {{/each}}
+                        {{else}}
+                            {{each list}}
+                                <option value="{{$value.id}}">{{$value.typeName}}</option>
+                            {{/each}}
+                        {{/if}}
+                    </select>
+                </div>
+                <small class="help-block">&nbsp;</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="price" class="col-sm-4 control-label">产品价格</label>
+
+            <div class="col-sm-5">
+                <div class="fg-line">
+                    <input type="text" class="form-control input-sm validate[required,maxSize[16]]" id="price" name="price"
+                           placeholder="产品价格" value="{{price}}">
+                </div>
+                <small class="help-block">&nbsp;</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="unit" class="col-sm-4 control-label">价格计时单位</label>
+
+            <div class="col-sm-5">
+                <div class="fg-line">
+                    <input type="text" class="form-control input-sm validate[required,maxSize[16]]" id="unit" name="unit"
+                           placeholder="价格计时单位（年，月，日）" value="{{unit}}">
+                </div>
+                <small class="help-block">&nbsp;</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="businessArea" class="col-sm-4 control-label">商业领域</label>
+
+            <div class="col-sm-5">
+                <div class="fg-line">
+                    <input type="text" class="form-control input-sm validate[required,maxSize[50]]" id="businessArea" name="businessArea"
+                           placeholder="商业领域" value="{{businessArea}}">
+                </div>
+                <small class="help-block">&nbsp;</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="technologyArea" class="col-sm-4 control-label">技术领域</label>
+
+            <div class="col-sm-5">
+                <div class="fg-line">
+                    <input type="text" class="form-control input-sm validate[required,maxSize[50]]" id="technologyArea" name="technologyArea"
+                           placeholder="技术领域" value="{{technologyArea}}">
+                </div>
+                <small class="help-block">&nbsp;</small>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-save">{{lang.btn.save}}</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">{{lang.btn.close}}</button>
+    </div>
+</form>

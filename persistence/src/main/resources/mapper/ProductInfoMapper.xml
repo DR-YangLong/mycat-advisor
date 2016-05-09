@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="org.apache.mycat.advisor.persistence.dao.ProductInfoMapper">
+
+    <select id="selectByNameAndCode" resultType="map">
+                <![CDATA[
+                    SELECT
+                        info.id as id,info.name,info.title,info.type as info_type,t.type_name as type,info.price,
+                        info.unit,info.business_area,info.technology_area
+                    FROM
+                        product_info info
+                        LEFT JOIN product_type t ON info.type = t.id
+                    WHERE
+                           info.name LIKE #{name}
+                        OR info.title LIKE #{title}
+                        OR t.id = #{type}
+                        OR info.technology_area LIKE #{technology}
+               ]]>
+    </select>
+
+
+
+    <select id="selectByParam" resultType="map">
+                SELECT
+                    info.id as id,info.name,info.title,info.type as info_type,t.type_name as type,info.price,
+                    info.unit,info.business_area as businessArea ,info.technology_area as technologyArea
+                FROM
+                    product_info info
+                    LEFT JOIN product_type t ON info.type = t.id
+               <where>
+                   1=1
+                   <if test="id!=null and id!=''">
+                      and info.id = #{id}
+                   </if>
+                   <if test="name!=null and name!=''">
+                      and info.name=#{name}
+                   </if>
+                   <if test="title!=null and title!=''">
+                      and info.title = #{title}
+                   </if>
+                   <if test="type!=null and type!=0">
+                      and t.type = #{type}
+                   </if>
+               </where>
+    </select>
+</mapper>

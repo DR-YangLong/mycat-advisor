@@ -1,5 +1,7 @@
 package org.apache.mycat.advisor.service.app.order.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.mycat.advisor.persistence.dao.TabOrderExtendMapper;
 import org.apache.mycat.advisor.persistence.dao.TabOrderMapper;
@@ -27,9 +29,68 @@ public class ApiOrderServiceImpl implements ApiOrderService {
 
 
     @Override
-    public TabOrder newOrder(Map<String, String> orderMap, Long productId) throws ParseException {
+    public TabOrder newOrder(Map<String, String> orderMap) throws ParseException {
 
         String type = orderMap.get("type");
+        TabOrder order = null;
+        if ("0".equals(type)) {
+            order = createSingleOrder(orderMap, type);
+        } else if ("1".equals(type)) {
+            order = createCustomOrder(orderMap, type);
+        }
+
+
+
+
+
+        return order;
+    }
+
+    private TabOrder createCustomOrder(Map<String, String> orderMap, String type) {
+        String beginDate = orderMap.get("beginDate");
+        String endDate = orderMap.get("endDate");
+        String sceneDay = orderMap.get("sceneDay");
+        String onlineDay = orderMap.get("onlineDay");
+        String skill = orderMap.get("skill");
+        String services = orderMap.get("services");
+        //skill.language  skill.platform  skill.db  skill.other  services
+        if (!verify(type, beginDate, endDate, sceneDay, skill, services,onlineDay)) {
+            return null;
+        }
+        JSONObject jsonObject = JSON.parseObject(skill);
+        String language = jsonObject.getJSONArray("language").toJSONString();
+        String platform = jsonObject.getJSONArray("platform").toJSONString();
+        String db = jsonObject.getJSONArray("db").toJSONString();
+        String other = jsonObject.getJSONArray("other").toJSONString();
+
+        long createTime = System.currentTimeMillis();
+        //创建一个新订单
+        TabOrder order = newOrder(2L, createTime);
+        //插入订单信息
+
+        saveExtend(type, beginDate, endDate, sceneDay, language, platform, db, other,services,order.getId(),onlineDay);
+        return order;
+    }
+
+    private void saveExtend(String type, String beginDate, String endDate, String sceneDay, String language, String platform, String db, String other, String services, Long id, String onlineDay) {
+        TabOrderExtend extend = new TabOrderExtend();
+        extend.setServices(services);
+        extend.setSkillLanguage(language);
+        extend.setSkillDb(db);
+        extend.setSkillOther(other);
+        extend.setSkillPlatform(platform);
+        extend.setBeginDate(beginDate);
+        extend.setEndDate(endDate);
+        extend.setOnlineDay(new Integer(onlineDay));
+        extend.setSceneDay(new Integer(sceneDay));
+        extend.setType(new Integer(type));
+        extend.setOrderId(id);
+
+        extendMapper.insert(extend);
+
+    }
+
+    private TabOrder createSingleOrder(Map<String, String> orderMap, String type) throws ParseException {
         String beginDate = orderMap.get("beginDate");
         String endDate = orderMap.get("endDate");
         String sceneDay = orderMap.get("sceneDay");
@@ -39,49 +100,26 @@ public class ApiOrderServiceImpl implements ApiOrderService {
         String advisor3 = orderMap.get("advisor3");
         String memo = orderMap.get("memo");
 
-        //if (verify(orderMap))
 
         if (!verify(type, beginDate, endDate, sceneDay, advisor1, advisor2, advisor3,onlineDay)) {
             return null;
         }
 
 
-
         long createTime = System.currentTimeMillis();
         //创建一个新订单
-        TabOrder order = newOrder(productId, createTime);
+        TabOrder order = newOrder(1L, createTime);
         //插入订单信息
 
         saveExtend(type, beginDate, endDate, sceneDay, advisor1, advisor2, advisor3, memo,order.getId(),onlineDay);
-
-
         return order;
     }
 
-    private boolean verify( String type, String beginDate, String endDate, String sceneDay, String advisor1, String advisor2, String advisor3,String s) {
-        if (StringUtils.isNotEmpty(type)) {
-            return true;
-        }
-        if (StringUtils.isNotEmpty(beginDate)) {
-            return true;
-        }
-        if (StringUtils.isNotEmpty(endDate)) {
-            return true;
-        }
-        if (StringUtils.isNotEmpty(sceneDay)) {
-            return true;
-        }
-        if (StringUtils.isNotEmpty(advisor1)) {
-            return true;
-        }
-        if (StringUtils.isNotEmpty(advisor2)) {
-            return true;
-        }
-        if (StringUtils.isNotEmpty(advisor3)) {
-            return true;
-        }
-        if (StringUtils.isNotEmpty(s)) {
-            return true;
+    private boolean verify(String ... strs) {
+        for (String str:strs){
+            if (StringUtils.isNotEmpty(str)) {
+                return true;
+            }
         }
         return false;
     }

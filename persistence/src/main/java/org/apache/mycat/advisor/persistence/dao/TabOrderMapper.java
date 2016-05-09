@@ -8,9 +8,11 @@ import java.util.Map;
 
 public interface TabOrderMapper extends MyMapper<TabOrder> {
 	
-	 public List<TabOrder> listByType(TabOrder tabOrder);
+	public List<TabOrder> listByType(TabOrder tabOrder);
 
 	public TabOrder getOrderInfoById(long id);
 
 	List<Map<String,Object>> pageOrderByStatus(int status);
+
+	Map<String,Object> getOrderInfoForMapById(long id);
 }

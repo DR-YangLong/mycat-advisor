@@ -1,0 +1,63 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{if id == null }}新增{{else}}修改{{/if}}</h4>
+</div>
+<form class="form-horizontal form-validate" id="doorSaveForm" method="post" action="product/steptpl/save">
+    <input name="id" type="hidden" value="{{id}}">
+    {{if id != null }}
+    <input name="insertTime" type="hidden" value="{{insertTime | dateFormat}}">
+    {{/if}}
+
+
+    <!--<input name="status" type="hidden" value="{{status}}">-->
+    <input name="delFlag" type="hidden" value="{{delFlag}}">
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="product_name" class="col-sm-4 control-label">产品名称</label>
+
+            <div class="col-sm-5">
+                <div class="fg-line">
+                    <select class="select-picker" id="product_name" name="productId" data-value="{{query.type}}">
+                        <option value="">请选择</option>
+                        {{if products != null}}
+                             {{each products as value}}
+                                <option value="{{value.id}}" {{if productId === value.id}} selected=selected {{/if}}>{{value.name}}</option>
+                             {{/each}}
+                        {{else}}
+                            {{each list}}
+                                <option value="{{$value.id}}">{{$value.name}}</option>
+                             {{/each}}
+                        {{/if}}
+                    </select>
+                </div>
+                <small class="help-block">&nbsp;</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="step" class="col-sm-4 control-label">流程步骤</label>
+
+            <div class="col-sm-5">
+                <div class="fg-line">
+                    <input type="text" class="form-control input-sm validate[required,maxSize[16]]" id="step" name="step"
+                           placeholder="流程步骤" value="{{step}}">
+                </div>
+                <small class="help-block">&nbsp;</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="stepTitle" class="col-sm-4 control-label">流程标题</label>
+
+            <div class="col-sm-5">
+                <div class="fg-line">
+                    <input type="text" class="form-control input-sm validate[required,maxSize[16]]" id="stepTitle" name="stepTitle"
+                           placeholder="流程标题" value="{{stepTitle}}">
+                </div>
+                <small class="help-block">&nbsp;</small>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-save">{{lang.btn.save}}</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">{{lang.btn.close}}</button>
+    </div>
+</form>

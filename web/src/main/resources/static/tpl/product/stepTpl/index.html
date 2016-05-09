@@ -1,0 +1,74 @@
+<div class="container">
+	{{include '../../public/breadcrumbs'}}
+
+	<div class="card">
+		<div class="card-header">
+			<h2>产品流程管理</h2>
+			<ul class="actions">
+				<li>
+					<a href="#product/steptpl/init?tpl=product/stepTpl/save" class="btn-modal">
+						<i class="zmdi zmdi-plus"></i>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="bootgrid-header container-fluid">
+			<form id="frmSearch" action="#product/steptpl/list?tpl=product/stepTpl/index" role="form">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="zmdi zmdi-search"></i></span>
+
+							<div class="fg-line">
+								<input type="text" class="form-control auto-complete" name="code"
+									   data-url="_data/typeahead/all.json" value="{{query.code}}" hidden="true"
+									   placeholder="名称和编码进行搜索">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<button type="button" class="btn btn-primary btn-sm m-t-5 waves-effect btn-search">
+							{{lang.btn.search}}
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="table-responsive">
+			<table class="table table-striped table-hover table-ellipsis">
+				<thead>
+				<tr>
+					<th width="5%">#</th>
+					<th width="10%">产品名称</th>
+					<th width="10%">产品流程</th>
+					<th width="20%">流程名称</th>
+					<th width="10%">开始时间</th>
+					<th width="10%">更新时间</th>
+					<th width="*">操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				{{each list}}
+				<tr>
+					<td>{{$index+1}}</td>
+					<td title="{{$value.name}}">{{$value.name}}</td>
+					<td title="{{$value.step}}">{{$value.step}}</td>
+					<td title="{{$value.step_title}}">{{$value.step_title}}</td>
+					<td title="{{$value.insert_time}}">{{$value.insert_time | dateFormat}}</td>
+					<td title="{{$value.update_time}}">{{$value.update_time | dateFormat}}</td>
+					<td>
+						<button type="button" class="btn btn-xs btn-default btn-icon btn-modal waves-effect waves-circle waves-float waves-effect waves-circle waves-float"
+								 data-href="product/steptpl/get/{{$value.id}}?tpl=product/stepTpl/save">
+							<span class="zmdi zmdi-edit"></span> </button>
+						<button type="button" class="btn btn-xs btn-danger btn-icon btn-del"
+								data-url="product/steptpl/del/{{$value.id}}">
+							<span class="zmdi zmdi-delete"></span> </button>
+					</td>
+				</tr>
+				{{/each}}
+				</tbody>
+			</table>
+		</div>
+		{{#pageInfo | pagination:lang,'full'}}
+	</div>
+</div>

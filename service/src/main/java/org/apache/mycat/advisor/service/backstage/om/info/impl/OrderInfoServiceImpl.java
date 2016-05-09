@@ -70,4 +70,10 @@ public class OrderInfoServiceImpl extends BaseServiceImpl<TabOrder> implements
 	public Page pageMyApproved(Map<String, Object> param) {
 		return null;
 	}
+
+	@Override
+	public Map<String, Object> orderInfoById(long id) {
+
+		return orderMapper.getOrderInfoForMapById(id);
+	}
 }

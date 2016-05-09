@@ -1,9 +1,6 @@
 package org.apache.mycat.advisor.persistence.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 /**
@@ -23,11 +20,16 @@ public class TabOrderExtend {
     private Long advisor1;
     private Long advisor2;
     private Long advisor3;
-    @Column(name = "memo", nullable = true, insertable = true, updatable = true)
-    private String memo;
     private Integer sceneDay;
+    private String memo;
+    private String skillLanguage;
+    private String skillPlatform;
+    private String skillDb;
+    private String skillOther;
+    private String services;
 
 
+    
     public Long getId() {
         return id;
     }
@@ -57,7 +59,7 @@ public class TabOrderExtend {
     }
 
     
-    @Column(name = "begin_date", nullable = true, insertable = true, updatable = true)
+    @Column(name = "begin_date", nullable = true, insertable = true, updatable = true, length = 20)
     public String getBeginDate() {
         return beginDate;
     }
@@ -67,7 +69,7 @@ public class TabOrderExtend {
     }
 
     
-    @Column(name = "end_date", nullable = true, insertable = true, updatable = true)
+    @Column(name = "end_date", nullable = true, insertable = true, updatable = true, length = 20)
     public String getEndDate() {
         return endDate;
     }
@@ -150,19 +152,73 @@ public class TabOrderExtend {
         return result;
     }
 
-    public void setMemo(String memo) {
-        this.memo = memo;
-    }
-
-    public String getMemo() {
-        return memo;
+    
+    @Column(name = "scene_Day", nullable = true, insertable = true, updatable = true)
+    public Integer getSceneDay() {
+        return sceneDay;
     }
 
     public void setSceneDay(Integer sceneDay) {
         this.sceneDay = sceneDay;
     }
-    @Column(name = "scene_day", nullable = true, insertable = true, updatable = true)
-    public Integer getSceneDay() {
-        return sceneDay;
+
+    
+    @Column(name = "memo", nullable = true, insertable = true, updatable = true, length = 255)
+    public String getMemo() {
+        return memo;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
+
+    
+    @Column(name = "skill_language", nullable = true, insertable = true, updatable = true, length = 255)
+    public String getSkillLanguage() {
+        return skillLanguage;
+    }
+
+    public void setSkillLanguage(String skillLanguage) {
+        this.skillLanguage = skillLanguage;
+    }
+
+    
+    @Column(name = "skill_platform", nullable = true, insertable = true, updatable = true, length = 255)
+    public String getSkillPlatform() {
+        return skillPlatform;
+    }
+
+    public void setSkillPlatform(String skillPlatform) {
+        this.skillPlatform = skillPlatform;
+    }
+
+    
+    @Column(name = "skill_db", nullable = true, insertable = true, updatable = true, length = 255)
+    public String getSkillDb() {
+        return skillDb;
+    }
+
+    public void setSkillDb(String skillDb) {
+        this.skillDb = skillDb;
+    }
+
+    
+    @Column(name = "skill_other", nullable = true, insertable = true, updatable = true, length = 255)
+    public String getSkillOther() {
+        return skillOther;
+    }
+
+    public void setSkillOther(String skillOther) {
+        this.skillOther = skillOther;
+    }
+
+    
+    @Column(name = "services", nullable = true, insertable = true, updatable = true, length = 255)
+    public String getServices() {
+        return services;
+    }
+
+    public void setServices(String services) {
+        this.services = services;
     }
 }

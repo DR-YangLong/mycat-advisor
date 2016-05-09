@@ -82,19 +82,19 @@ public class UserInfoController extends BaseController {
             return failure("删除操作失败！");
         }
     }
-    
+
     @RequestMapping("getUserByName")
     public List<Map<String,Object>> getUserByName(String query){
-    	List<TabUserInfo> userList = userInfoService.getAllByUsername(query);
-    	List<Map<String,Object>> users = new ArrayList<>();
-    	for(TabUserInfo userInfo : userList){
-    		Map<String,Object> temp = new HashMap<>();
-    		temp.put("id", userInfo.getId());
-    		temp.put("name", userInfo.getUsername());
-    		users.add(temp);
-    	}
-    	
-    	return users;
+        List<TabUserInfo> userList = userInfoService.getAllByUsername(query);
+        List<Map<String,Object>> users = new ArrayList<>();
+        for(TabUserInfo userInfo : userList){
+            Map<String,Object> temp = new HashMap<>();
+            temp.put("id", userInfo.getId());
+            temp.put("name", userInfo.getUsername());
+            users.add(temp);
+        }
+
+        return users;
     }
 
 

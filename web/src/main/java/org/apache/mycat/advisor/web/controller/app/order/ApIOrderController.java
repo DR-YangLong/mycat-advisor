@@ -39,7 +39,7 @@ public class ApiOrderController extends BaseController{
 	public ResultMap subscribe(@RequestParam Map<String, String> param) {
 		TabOrder order = null;
 		try {
-			order = apiOrderService.newOrder(param,1L);
+			order = apiOrderService.newOrder(param);
 			if (order == null) {
 				return failure("下单失败，请检查数据");
 			}

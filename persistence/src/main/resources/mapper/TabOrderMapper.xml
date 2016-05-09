@@ -61,4 +61,29 @@
         WHERE od.`status`=#{status}
     </select>
 
+    <select id="getOrderInfoForMapById"  resultType="map">
+        SELECT
+            oty.`name` AS orderType,
+            tod.order_number,
+            tod.`status`,
+            pdi.`name` AS productName,
+            cpy.`name` AS companyName,
+            userI.username AS userName,
+            tod.create_time AS createTime,
+            pla.address,
+            tod.id,
+            ext.begin_date AS beginDate,
+            ext.end_date AS endDate,
+            ext.memo,ext.online_day as onlineDay,
+            ext.scene_Day as sceneDay
+        FROM
+            tab_order tod
+        LEFT JOIN tab_order_extend ext ON ext.order_id = tod.id
+        LEFT JOIN dic_order_type oty ON oty.id = tod.type
+        LEFT JOIN product_info pdi ON pdi.id = tod.product_id
+        LEFT JOIN tab_user_place pla ON pla.id = tod.place_id
+        LEFT JOIN tab_user_info userI ON userI.id = ext.order_id
+        LEFT JOIN tab_company cpy ON cpy.id = userI.company
+    </select>
+
 </mapper>

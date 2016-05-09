@@ -62,8 +62,8 @@ public class OrderApprovalController extends BaseController {
 	
 	@RequestMapping("get/{id}")
     public ResultMap info(@PathVariable long id) {
-		TabOrder order = orderService.get(id);
-        return success(order);
+		Map<String,Object> data = orderService.orderInfoById(id);
+        return success(data);
     }
 
     @RequestMapping("del/{id}")
